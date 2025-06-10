@@ -10,6 +10,10 @@ This repository contains a Python script that automatically downloads genome ass
 - Downloads `.fna`, `.faa`, `.gtf`, and `.cds_from_genomic.fna` files
 - Displays download progress using `tqdm`
 - Organizes downloads into individual folders per genome
+- If a specific file (e.g., _protein.faa.gz or _genomic.gtf.gz) is not available for a given assembly on NCBI's FTP server, the script will:
+      Print a warning stating that the download failed.
+      Skip to the next file type or next assembly without interrupting the full download process.
+      This ensures the script continues running smoothly, even if some files are unavailable.
 
 ## Files Downloaded Per Genome
 
