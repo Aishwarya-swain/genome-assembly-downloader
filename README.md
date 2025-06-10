@@ -20,7 +20,7 @@ This repository contains a Python script that automatically downloads genome ass
 
 ##  Requirements
 
-- Python 3.6+
+- Python
 - `requests`
 - `tqdm`
 
