@@ -2,8 +2,8 @@
 
 This repository contains two Python script that automatically downloads genome assembly files (FASTA, GTF, CDS, and protein) from NCBI using a list of GCA or GCF accession numbers.
 
-##download_assemblies.py: Accepts a list of NCBI GCA/GCF accession IDs with genome assembly ID
-##genome_downloader.py: A updated script which accepts only list of NCBI GCA/GCF accession IDs 
+download_assemblies.py: Accepts a list of NCBI GCA/GCF accession IDs with genome assembly ID <br>
+genome_downloader.py: An updated script which accepts only list of NCBI GCA/GCF accession IDs 
 ## Features
 - Constructs the correct FTP path using accession format
 - Downloads `.fna`, `.faa`, `.gtf`, and `.cds_from_genomic.fna` files
