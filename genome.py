@@ -2,6 +2,7 @@ import os
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup  # new dependency
+###Download the genome files from NCBI RefSeq assembly ID
 
 # List of genome accessions (only GCF/GCA IDs)
 accessions = [
@@ -60,7 +61,7 @@ def get_asm_name_from_listing(accession):
 
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"⚠️ Could not fetch directory listing for {accession}")
+        print(f" Could not fetch directory listing for {accession}")
         return None
 
     # Parse HTML directory listing
@@ -68,7 +69,7 @@ def get_asm_name_from_listing(accession):
     links = [a.text.strip("/") for a in soup.find_all('a') if a.text.startswith(accession)]
     if links:
         asm_name = links[0].split("_")[-1]
-        print(f"✅ Found assembly directory: {links[0]}")
+        print(f" Found assembly directory: {links[0]}")
         return links[0]
     else:
         print(f"⚠️ No ASM directory found for {accession}")
@@ -78,7 +79,7 @@ def download_genome_files(accession):
     """Download genome FASTA, CDS, GTF, etc., for a given accession."""
     asm_folder = get_asm_name_from_listing(accession)
     if asm_folder is None:
-        print(f"❌ Skipping {accession} (no ASM folder found)")
+        print(f" Skipping {accession} (no ASM folder found)")
         return
 
     genome_dir = os.path.join(output_dir, accession)
@@ -86,9 +87,7 @@ def download_genome_files(accession):
 
     ftp_path = f"{get_ftp_path(accession)}/{asm_folder}"
 
-    #file_types = ["_genomic.fna.gz", "_protein.faa.gz", "_genomic.gtf.gz", "_cds_from_genomic.fna.gz"]
-    
-    file_types = ["_genomic.fna.gz"]
+    file_types = ["_genomic.fna.gz", "_protein.faa.gz", "_genomic.gtf.gz", "_cds_from_genomic.fna.gz"]
 
     for suffix in file_types:
         file_name = asm_folder + suffix
@@ -101,3 +100,4 @@ def download_genome_files(accession):
 for acc in accessions:
     print(f"\n=== Processing {acc} ===")
     download_genome_files(acc)
+
