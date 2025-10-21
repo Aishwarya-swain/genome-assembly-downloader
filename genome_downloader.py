@@ -2,7 +2,7 @@ import os
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup  # new dependency
-###Download the genome files from NCBI RefSeq assembly ID
+###Download the genome files from the NCBI RefSeq assembly ID
 
 # List of genome accessions (only GCF/GCA IDs)
 accessions = [
@@ -100,4 +100,5 @@ def download_genome_files(accession):
 for acc in accessions:
     print(f"\n=== Processing {acc} ===")
     download_genome_files(acc)
+
 
